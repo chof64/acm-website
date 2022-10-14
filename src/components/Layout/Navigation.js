@@ -1,13 +1,71 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Image from "next/image";
 import { Menu } from "@headlessui/react";
 import { Menu as MenuIcon, X as XIcon } from "lucide-react";
+import Link from "next/link";
 
 import Platform from "./Platform";
 
 import { classMerge } from "/src/utils/TailwindUtilities";
 
 export default function Navigation() {
+  const NAVIGATION = [
+    {
+      group: "Pages",
+      items: [
+        {
+          name: "Home",
+          href: "/",
+        },
+        {
+          name: "About",
+          href: "/#about",
+        },
+        {
+          name: "Contact",
+          href: "/#contact",
+        },
+      ],
+    },
+    {
+      group: "External",
+      items: [
+        {
+          name: "Facebook",
+          href: "https://facebook.com",
+          external: true,
+        },
+      ],
+    },
+  ];
+
+  const MenuLink = forwardRef((props, ref) => {
+    MenuLink.displayName = "MenuLink";
+    let { external = false, href, children, ...rest } = props;
+
+    if (external) {
+      return (
+        <a
+          href={href}
+          ref={ref}
+          target="_blank"
+          rel="noopener noreferrer"
+          {...rest}
+        >
+          {children}
+        </a>
+      );
+    }
+
+    return (
+      <Link href={href}>
+        <a ref={ref} {...rest}>
+          {children}
+        </a>
+      </Link>
+    );
+  });
+
   return (
     <Menu>
       {({ open }) => (
@@ -52,7 +110,33 @@ export default function Navigation() {
                 as="div"
                 className="flex w-[80vw] flex-col gap-y-2 overflow-auto rounded-lg border border-neutral-300 bg-white p-4 shadow-md shadow-gray-200/50 focus:outline-none md:w-[75vw] lg:w-[60vw]"
               >
-                <p>Navigation will be added here.</p>
+                {NAVIGATION.map((group) => (
+                  <div key={group.group}>
+                    <h2 className="font-bold uppercase text-neutral-600">
+                      {group.group}
+                    </h2>
+                    <div className="flex flex-col gap-y-2">
+                      {group.items.map((item) => (
+                        <Menu.Item key={item.name}>
+                          {({ active }) => (
+                            <MenuLink
+                              href={item.href}
+                              external={item.external}
+                              className={classMerge(
+                                "flex items-center gap-x-2 rounded-md px-2 py-1",
+                                active
+                                  ? "bg-neutral-100 text-teal-600"
+                                  : "text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600"
+                              )}
+                            >
+                              {item.name}
+                            </MenuLink>
+                          )}
+                        </Menu.Item>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </Menu.Items>
             </div>
             <div
