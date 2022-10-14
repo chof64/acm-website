@@ -16,14 +16,17 @@ export default function Navigation() {
         {
           name: "Home",
           href: "/",
+          pin: true,
         },
         {
           name: "About",
           href: "/#about",
+          pin: true,
         },
         {
           name: "Announcements",
           href: "/#announcements",
+          pin: true,
         },
         {
           name: "Blog",
@@ -56,6 +59,10 @@ export default function Navigation() {
       ],
     },
   ];
+
+  const pinnedItems = NAVIGATION.map((group) => {
+    return group.items.filter((item) => item.pin);
+  }).flat();
 
   const MenuLink = forwardRef((props, ref) => {
     MenuLink.displayName = "MenuLink";
@@ -90,35 +97,56 @@ export default function Navigation() {
         <>
           <Platform className="bg-white py-2">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-x-1">
-                <div className="relative aspect-square w-16">
-                  <Image
-                    priority
-                    layout="fill"
-                    objectFit="cover"
-                    src="/images/ccs-logo.png"
-                    alt="ACM Logo"
-                  />
-                </div>
-                <div className="rounded-r-md border-l-2 border-l-black py-1.5 px-1.5">
-                  <h1 className="flex flex-col font-bold uppercase leading-tight">
-                    Association of <span>Computing Machinery</span>
-                  </h1>
-                </div>
+              <div className="flex cursor-pointer items-center gap-x-1">
+                <Link href="/">
+                  <>
+                    <div className="relative aspect-square w-16">
+                      <Image
+                        priority
+                        layout="fill"
+                        objectFit="cover"
+                        src="/images/ccs-logo.png"
+                        alt="ACM Logo"
+                      />
+                    </div>
+                    <div className="rounded-r-md border-l-2 border-l-black py-1.5 px-1.5">
+                      <h1 className="flex flex-col font-bold uppercase leading-tight">
+                        Association of <span>Computing Machinery</span>
+                      </h1>
+                    </div>
+                  </>
+                </Link>
               </div>
-              <Menu.Button>
-                {open ? (
-                  <div className="flex flex-col items-center justify-center rounded-md border bg-red-100 p-1 text-neutral-600">
-                    <XIcon className="h-8 w-8" />
-                    <p className="text-[0.5rem] uppercase leading-none">Menu</p>
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center justify-center rounded-md border p-1 text-neutral-600">
-                    <MenuIcon className="h-8 w-8" />
-                    <p className="text-[0.5rem] uppercase leading-none">Menu</p>
-                  </div>
-                )}
-              </Menu.Button>
+              <div className="flex items-center justify-center">
+                <div className="mr-6 hidden items-center justify-center gap-x-4 lg:flex">
+                  {pinnedItems.map((item) => (
+                    <MenuLink
+                      key={item.name}
+                      href={item.href}
+                      className="uppercase text-black underline-offset-2 hover:text-cyan-600 hover:underline"
+                    >
+                      {item.name}
+                    </MenuLink>
+                  ))}
+                </div>
+                <Menu.Button>
+                  {open ? (
+                    <div className="flex flex-col items-center justify-center rounded-md border bg-red-100 p-1 text-neutral-600">
+                      <XIcon className="h-8 w-8" />
+                      {/* <p className="text-[0.5rem] uppercase leading-none">
+                        Menu
+                      </p> */}
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center rounded-md border p-1 text-neutral-600 hover:bg-cyan-100">
+                      <MenuIcon className="h-8 w-8" />
+                      {/* <p className="text-[0.5rem] uppercase leading-none">
+                        Menu
+                      </p> */}
+                    </div>
+                  )}
+                </Menu.Button>
+              </div>
             </div>
           </Platform>
           <div className="absolute w-full">
