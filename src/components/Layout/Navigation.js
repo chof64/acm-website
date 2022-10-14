@@ -22,6 +22,14 @@ export default function Navigation() {
           href: "/#about",
         },
         {
+          name: "Announcements",
+          href: "/#announcements",
+        },
+        {
+          name: "Blog",
+          href: "/#blog",
+        },
+        {
           name: "Contact",
           href: "/#contact",
         },
@@ -33,6 +41,16 @@ export default function Navigation() {
         {
           name: "Facebook",
           href: "https://facebook.com",
+          external: true,
+        },
+        {
+          name: "Twitter",
+          href: "https://twitter.com",
+          external: true,
+        },
+        {
+          name: "Instagram",
+          href: "https://instagram.com",
           external: true,
         },
       ],
@@ -104,18 +122,18 @@ export default function Navigation() {
             </div>
           </Platform>
           <div className="absolute w-full">
-            <div className="absolute mt-8 flex max-h-[60vh] w-full justify-center">
+            <div className="absolute mt-8 flex w-full justify-center">
               {/* // TODO: Adjust tray sizes across different viewports. */}
               <Menu.Items
                 as="div"
-                className="flex w-[80vw] flex-col gap-y-2 overflow-auto rounded-lg border border-neutral-300 bg-white p-4 shadow-md shadow-gray-200/50 focus:outline-none md:w-[75vw] lg:w-[60vw]"
+                className="flex max-h-[55vh] w-[90vw] flex-col gap-y-2.5 overflow-auto rounded-lg border border-neutral-300 bg-white p-2 shadow-md shadow-gray-200/50 focus:outline-none md:w-[75vw] lg:w-[60vw]"
               >
                 {NAVIGATION.map((group) => (
                   <div key={group.group}>
-                    <h2 className="font-bold uppercase text-neutral-600">
+                    <h2 className="text-xs font-bold uppercase text-neutral-600">
                       {group.group}
                     </h2>
-                    <div className="flex flex-col gap-y-2">
+                    <div className="mt-1 flex flex-col gap-y-1">
                       {group.items.map((item) => (
                         <Menu.Item key={item.name}>
                           {({ active }) => (
@@ -123,7 +141,7 @@ export default function Navigation() {
                               href={item.href}
                               external={item.external}
                               className={classMerge(
-                                "flex items-center gap-x-2 rounded-md px-2 py-1",
+                                "flex items-center gap-x-2 rounded-md border px-2 py-3 shadow-sm",
                                 active
                                   ? "bg-neutral-100 text-teal-600"
                                   : "text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600"
