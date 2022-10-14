@@ -126,11 +126,11 @@ export default function Navigation() {
               {/* // TODO: Adjust tray sizes across different viewports. */}
               <Menu.Items
                 as="div"
-                className="flex max-h-[55vh] w-[90vw] flex-col gap-y-2.5 overflow-auto rounded-lg border border-neutral-300 bg-white p-2 shadow-md shadow-gray-200/50 focus:outline-none md:w-[75vw] lg:w-[60vw]"
+                className="flex max-h-[55vh] w-[95vw] flex-col gap-y-2.5 overflow-auto rounded-lg border border-neutral-300 bg-white p-2 shadow-md shadow-gray-200/50 focus:outline-none md:w-[70vw] md:p-4 lg:w-[50vw]"
               >
                 {NAVIGATION.map((group) => (
                   <div key={group.group}>
-                    <h2 className="text-xs font-bold uppercase text-neutral-600">
+                    <h2 className="text-xs font-bold uppercase text-gray-400">
                       {group.group}
                     </h2>
                     <div className="mt-1 flex flex-col gap-y-1">
@@ -141,10 +141,8 @@ export default function Navigation() {
                               href={item.href}
                               external={item.external}
                               className={classMerge(
-                                "flex items-center gap-x-2 rounded-md border px-2 py-3 shadow-sm",
-                                active
-                                  ? "bg-neutral-100 text-teal-600"
-                                  : "text-neutral-500 hover:bg-neutral-100 hover:text-neutral-600"
+                                "flex items-center gap-x-2 rounded-md border px-4 py-3 shadow-sm",
+                                active ? "bg-neutral-100 text-teal-600" : null
                               )}
                             >
                               {item.name}
