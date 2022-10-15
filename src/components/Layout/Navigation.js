@@ -95,12 +95,12 @@ export default function Navigation() {
     <Menu>
       {({ open }) => (
         <>
-          <Platform className="bg-white py-2">
+          <Platform className="py-2 bg-white">
             <div className="flex items-center justify-between">
-              <div className="flex cursor-pointer items-center gap-x-1">
+              <div className="flex items-center cursor-pointer gap-x-1">
                 <Link href="/">
                   <>
-                    <div className="relative aspect-square w-16">
+                    <div className="relative w-16 aspect-square">
                       <Image
                         priority
                         layout="fill"
@@ -110,7 +110,7 @@ export default function Navigation() {
                       />
                     </div>
                     <div className="rounded-r-md border-l-2 border-l-black py-1.5 px-1.5">
-                      <h1 className="flex flex-col font-bold uppercase leading-tight">
+                      <h1 className="flex flex-col font-bold leading-tight uppercase">
                         Association of <span>Computing Machinery</span>
                       </h1>
                     </div>
@@ -118,12 +118,12 @@ export default function Navigation() {
                 </Link>
               </div>
               <div className="flex items-center justify-center">
-                <div className="mr-6 hidden items-center justify-center gap-x-4 lg:flex">
+                <div className="items-center justify-center hidden mr-6 gap-x-4 lg:flex">
                   {pinnedItems.map((item) => (
                     <MenuLink
                       key={item.name}
                       href={item.href}
-                      className="uppercase text-black underline-offset-2 hover:text-cyan-600 hover:underline"
+                      className="text-black uppercase underline-offset-2 hover:text-cyan-600 hover:underline"
                     >
                       {item.name}
                     </MenuLink>
@@ -131,15 +131,15 @@ export default function Navigation() {
                 </div>
                 <Menu.Button>
                   {open ? (
-                    <div className="flex flex-col items-center justify-center rounded-md border bg-red-100 p-1 text-neutral-600">
-                      <XIcon className="h-8 w-8" />
+                    <div className="flex flex-col items-center justify-center p-1 bg-red-100 border rounded-md text-neutral-600">
+                      <XIcon className="w-8 h-8" />
                       {/* <p className="text-[0.5rem] uppercase leading-none">
                         Menu
                       </p> */}
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center justify-center rounded-md border p-1 text-neutral-600 hover:bg-cyan-100">
-                      <MenuIcon className="h-8 w-8" />
+                    <div className="flex flex-col items-center justify-center p-1 border rounded-md text-neutral-600 hover:bg-cyan-100">
+                      <MenuIcon className="w-8 h-8" />
                       {/* <p className="text-[0.5rem] uppercase leading-none">
                         Menu
                       </p> */}
@@ -150,18 +150,18 @@ export default function Navigation() {
             </div>
           </Platform>
           <div className="absolute w-full">
-            <div className="absolute mt-8 flex w-full justify-center">
+            <div className="absolute flex justify-center w-full mt-8">
               {/* // TODO: Adjust tray sizes across different viewports. */}
               <Menu.Items
                 as="div"
-                className="flex max-h-[55vh] w-[95vw] flex-col gap-y-2.5 overflow-auto rounded-lg border border-neutral-300 bg-white p-2 shadow-md shadow-gray-200/50 focus:outline-none md:w-[70vw] md:p-4 lg:w-[50vw]"
+                className="flex max-h-[55vh] w-[95vw] flex-col gap-y-2.5 overflow-auto rounded-lg border border-neutral-300 bg-gray-100 p-2 shadow-md shadow-gray-200/50 focus:outline-none md:w-[70vw] md:p-4 lg:w-[50vw]"
               >
                 {NAVIGATION.map((group) => (
                   <div key={group.group}>
-                    <h2 className="text-xs font-bold uppercase text-gray-400">
+                    <h2 className="text-xs font-bold text-gray-400 uppercase">
                       {group.group}
                     </h2>
-                    <div className="mt-1 flex flex-col gap-y-1">
+                    <div className="flex flex-col mt-1 gap-y-1">
                       {group.items.map((item) => (
                         <Menu.Item key={item.name}>
                           {({ active }) => (
@@ -169,7 +169,7 @@ export default function Navigation() {
                               href={item.href}
                               external={item.external}
                               className={classMerge(
-                                "flex items-center gap-x-2 rounded-md border px-4 py-3 shadow-sm",
+                                "flex items-center gap-x-2 rounded-md bg-white px-4 py-3 font-bold",
                                 active ? "bg-neutral-100 text-teal-600" : null
                               )}
                             >
