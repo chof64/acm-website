@@ -47,7 +47,7 @@ export default function Index() {
 
           <Tab.Group
             as="div"
-            className="relative flex flex-col gap-3 p-2 mt-6 bg-gray-100 border rounded-lg border-neutral-300 md:flex-row"
+            className="relative flex flex-col gap-3 p-2 mt-6 bg-gray-200 border rounded-lg border-neutral-300 md:flex-row"
             vertical
           >
             <p className="absolute -top-2 left-2 rounded bg-white px-0.5 text-xs font-semibold text-neutral-400">
