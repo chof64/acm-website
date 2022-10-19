@@ -28,6 +28,8 @@ export const getLatestInformationItems = async (
 
   RESPONSE.results.forEach((item) => {
     item.slug = generateSlug(item.properties.Name.title[0].plain_text);
+    item.category = item.properties.Category.select.name;
+
     item.parsed_created_time = transformISOtoEnglish(item.created_time);
     item.parsed_last_edited_time = transformISOtoEnglish(item.last_edited_time);
 
