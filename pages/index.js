@@ -56,6 +56,7 @@ export default function Index({ latest_information }) {
             </div>
           </div>
 
+          {/* //TODO: Tranfer into own component. */}
           <Tab.Group
             as="div"
             className="relative flex flex-col gap-3 p-2 mt-6 bg-gray-200 border rounded-lg border-neutral-300 md:flex-row"
@@ -64,7 +65,7 @@ export default function Index({ latest_information }) {
             <p className="absolute -top-2 left-2 rounded bg-white px-0.5 text-xs font-semibold text-neutral-400">
               Latest Information
             </p>
-            <Tab.List className="mt-2 grid grid-rows-3 gap-1 pb-1 font-semibold md:w-[30%]">
+            <Tab.List className="mt-2 flex flex-col gap-1 pb-1 font-semibold md:w-[30%]">
               {latest_information.map((item, index) => (
                 <Tab key={index} as={Fragment}>
                   {({ selected }) => (
@@ -88,10 +89,13 @@ export default function Index({ latest_information }) {
                   </h2>
                   {/* Add list of announcements from CMS here. */}
                   <div>
-                    {item.data.map((item) => (
-                      <div key={item.id} className="mt-2">
+                    {item.data.slice(0, 5).map((item) => (
+                      <div key={item.id} className="mt-1">
                         <Link href={`/latest-information/${item.slug}`}>
-                          <a className="text-sm font-semibold text-gray-700">
+                          <a className="flex items-center text-sm font-semibold text-gray-700 w-fit">
+                            <span className="mr-1 text-xs font-semibold text-gray-400">
+                              {item.parsed_created_time}:
+                            </span>
                             {item.properties.Name.title[0].plain_text}
                           </a>
                         </Link>
