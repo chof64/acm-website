@@ -7,14 +7,14 @@ import LayoutGlobal from "/src/components/Layout/LayoutGlobal";
 import Layout from "/src/components/Layout/Layout";
 import Platform from "/src/components/Layout/Platform";
 
-import { latestInformation } from "/src/packages/notion-api/LatestInformation";
+import { listLatestInformation } from "/src/packages/LatestInformation/LatestInformation";
 
 import { classMerge } from "/src/utils/TailwindUtilities";
 
 export const getStaticProps = async () => {
   return {
     props: {
-      latest_information: await latestInformation(),
+      latest_information: await listLatestInformation(),
     },
     revalidate: 10,
   };
@@ -91,7 +91,7 @@ export default function Index({ latest_information }) {
                   <div>
                     {item.data.slice(0, 5).map((item) => (
                       <div key={item.id} className="mt-1">
-                        <Link href={`/latest-information/${item.slug}`}>
+                        <Link href={`/info/${item.slug}`}>
                           <a className="flex items-center text-sm font-semibold text-gray-700 w-fit">
                             <span className="mr-1 text-xs font-semibold text-gray-400">
                               {item.parsed_created_time}:
