@@ -1,7 +1,7 @@
 import {
   getLatestInformationMetadata,
   getLatestInformationItems,
-} from "/src/packages/notion-api/puller/GetLatestInformation";
+} from "/src/packages/LatestInformation/GetLatestInformation";
 
 export default async function getannouncements(req, res) {
   res.status(200).json({
