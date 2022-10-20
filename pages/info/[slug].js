@@ -7,8 +7,13 @@ import Platform from "/src/components/Layout/Platform";
 import { getLatestInformationItems } from "/src/packages/LatestInformation/GetLatestInformation";
 
 export async function getStaticPaths() {
+  const ALL_INFOS = await getLatestInformationItems();
+  const LATEST_5_INFO = ALL_INFOS.slice(0, 5).map((info) => ({
+    params: { slug: info.slug },
+  }));
+
   return {
-    paths: [],
+    paths: LATEST_5_INFO,
     fallback: true,
   };
 }
