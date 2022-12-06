@@ -1,8 +1,7 @@
 module.exports = {
   latestInfo: [
     {
-      ident: "all",
-      name: "_all",
+      name: "all",
       notion_id: "15a310be6dfb4f3f823365dad47e0977",
       slug: "/info",
       parent: "Latest Information",
@@ -17,8 +16,7 @@ module.exports = {
       },
     },
     {
-      ident: "announcement",
-      name: "Annoucements",
+      name: "announcement",
       notion_id: "15a310be6dfb4f3f823365dad47e0977",
       slug: "/info",
       parent: "Latest Information",
@@ -43,8 +41,7 @@ module.exports = {
       },
     },
     {
-      ident: "blog",
-      name: "Blog",
+      name: "blog",
       notion_id: "15a310be6dfb4f3f823365dad47e0977",
       slug: "/info",
       parent: "Latest Information",
@@ -69,8 +66,7 @@ module.exports = {
       },
     },
     {
-      ident: "event",
-      name: "Events",
+      name: "event",
       notion_id: "15a310be6dfb4f3f823365dad47e0977",
       slug: "/info",
       parent: "Latest Information",

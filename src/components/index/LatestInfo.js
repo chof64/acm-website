@@ -38,7 +38,7 @@ export default function LatestInfo({ className, data }) {
             <Tab.Panel key={item.name}>
               <LatestInfoContent
                 name={item.name}
-                ident={item.ident}
+                ident={item.notion_config_name}
                 data={data.items.results}
               />
             </Tab.Panel>

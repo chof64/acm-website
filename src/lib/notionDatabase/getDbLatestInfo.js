@@ -5,7 +5,7 @@ import { getDbItems } from "./getDbItems";
 
 export const getDbLatestInfo = async (page) => {
   const _config = getConfig({
-    key: "ident",
+    key: "name",
     value: page,
     config: latestInfo,
   });
@@ -17,7 +17,7 @@ export const getDbLatestInfo = async (page) => {
 
 export const getDbAllLatestInfo = async () => {
   const _config = getConfig({
-    key: "ident",
+    key: "name",
     value: "_all",
     config: latestInfo,
   });
