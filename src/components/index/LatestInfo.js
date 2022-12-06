@@ -14,7 +14,7 @@ export default function LatestInfo({ className, data }) {
       </h1>
       <Tab.Group
         as="div"
-        className="mt-4 justify-between rounded-md bg-orange-200 p-1 shadow md:flex md:space-x-1"
+        className="mt-4 justify-between space-y-1 rounded-md bg-orange-200 p-1 shadow md:flex md:space-y-0 md:space-x-1"
         vertical
       >
         <Tab.List className="flex w-full flex-col rounded-md border border-white bg-white/30 backdrop-blur-md md:min-w-[25%] md:max-w-xs">
@@ -33,7 +33,7 @@ export default function LatestInfo({ className, data }) {
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className="mt-5 max-h-[12rem] min-h-[12rem] w-full overflow-auto rounded-md border border-white bg-white/50 p-2 md:mt-0">
+        <Tab.Panels className="max-h-[12rem] min-h-[12rem] w-full overflow-auto rounded-md border border-white bg-white/50 p-2">
           {latestInfo.map((item) => (
             <Tab.Panel key={item.name}>
               <LatestInfoContent
