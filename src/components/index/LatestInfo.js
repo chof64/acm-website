@@ -14,7 +14,7 @@ export default function LatestInfo({ className, data }) {
       </h1>
       <Tab.Group
         as="div"
-        className="mt-4 justify-between space-x-2 rounded-md bg-orange-200 p-1 shadow md:flex"
+        className="mt-4 justify-between rounded-md bg-orange-200 p-1 shadow md:flex md:space-x-1"
         vertical
       >
         <Tab.List className="flex w-full flex-col rounded-md border border-white bg-white/30 backdrop-blur-md md:min-w-[25%] md:max-w-xs">
