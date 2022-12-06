@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   const paths = items.results.map((item) => ({
     params: { slug: item.slug },
   }));
-  return { paths, fallback: true };
+  return { paths: paths, fallback: true };
 }
 
 export async function getStaticProps(context) {
