@@ -1,7 +1,7 @@
 import React from "react";
 
-import LayoutGlobal from "/src/components/Layout/LayoutGlobal";
-import Layout from "/src/components/Layout/Layout";
+import LayoutGlobal from "/src/components/LayoutGlobal";
+import Layout from "/src/components/Layout";
 import Header from "/src/components/index/Header";
 import LatestInfo from "/src/components/index/LatestInfo";
 import { getDbLatestInfo } from "/src/lib/notionDatabase/getDbLatestInfo";
