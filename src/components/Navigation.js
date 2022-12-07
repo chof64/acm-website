@@ -11,6 +11,7 @@ import {
 
 import { items } from "/config/items.navigation.config.js";
 import Platform from "./Platform";
+import TrayPlatform from "./navigation/TrayPlatform";
 import { classMerge } from "/src/utils/classMerge";
 import { getConfig } from "/src/utils/getConfig";
 
@@ -49,7 +50,7 @@ export default function Navigation() {
             <Platform>
               <div className="flex items-center justify-between py-3">
                 <Link href="/">
-                  <a className="flex cursor-pointer items-center gap-x-1">
+                  <a className="flex cursor-pointer items-center gap-x-1 hover:text-orange-500">
                     <div className="relative aspect-square w-16">
                       <Image
                         priority
@@ -60,7 +61,7 @@ export default function Navigation() {
                       />
                     </div>
                     <div className="rounded-r-md border-l-2 border-l-black py-1.5 px-1.5">
-                      <h1 className="flex flex-col font-bold uppercase leading-tight">
+                      <h1 className="flex flex-col text-lg font-extrabold uppercase leading-tight">
                         Association of <span>Computing Machinery</span>
                       </h1>
                     </div>
@@ -99,7 +100,7 @@ export default function Navigation() {
           </div>
           <div className="absolute w-full">
             <div className="absolute mt-8 flex w-full justify-center">
-              <Platform>
+              <TrayPlatform>
                 <Menu.Items
                   as="div"
                   className="flex max-h-[55vh] flex-col gap-y-2.5 overflow-auto rounded-lg border-2 border-orange-600 bg-white p-2 shadow focus:outline-none md:p-4"
@@ -142,7 +143,7 @@ export default function Navigation() {
                     </div>
                   ))}
                 </Menu.Items>
-              </Platform>
+              </TrayPlatform>
             </div>
             <div
               className={classMerge(
