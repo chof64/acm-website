@@ -4,7 +4,7 @@ import { getDbMetadata } from "./getDbMetadata";
 import { getDbItems } from "./getDbItems";
 
 export const getDbLatestInfo = async (page) => {
-  const _config = await getConfig({
+  const _config = getConfig({
     key: "name",
     value: page,
     config: latestInfo,
