@@ -17,24 +17,24 @@ module.exports = {
         },
       ],
     },
-    {
-      group: "Socials",
-      items: [
-        {
-          name: "GitHub",
-          href: "https://github.com/chof64",
-          pin: false,
-          external: true,
-          icon: "/icons/socials/github.svg",
-        },
-        {
-          name: "Polywork",
-          href: "https://polywork.chadfernandez.me",
-          pin: false,
-          external: true,
-          icon: "/icons/socials/polywork.svg",
-        },
-      ],
-    },
+    // {
+    //   group: "Socials",
+    //   items: [
+    //     {
+    //       name: "GitHub",
+    //       href: "https://github.com/chof64",
+    //       pin: false,
+    //       external: true,
+    //       icon: "/icons/socials/github.svg",
+    //     },
+    //     {
+    //       name: "Polywork",
+    //       href: "https://polywork.chadfernandez.me",
+    //       pin: false,
+    //       external: true,
+    //       icon: "/icons/socials/polywork.svg",
+    //     },
+    //   ],
+    // },
   ],
 };
