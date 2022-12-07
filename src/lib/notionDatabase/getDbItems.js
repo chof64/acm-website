@@ -13,7 +13,9 @@ export const getDbItems = async (id, conditions) => {
   });
 
   result.results.forEach((item) => {
-    item.slug = generateSlug(item.properties.Name.title[0].plain_text);
+    item.slug =
+      item.properties.Slug?.rich_text[0]?.plain_text ||
+      generateSlug(item.properties.Name.title[0].plain_text);
     item.parsed_created_time = transformIsoToEnglish(item.created_time);
     item.parsed_last_edited_time = transformIsoToEnglish(item.last_edited_time);
   });
