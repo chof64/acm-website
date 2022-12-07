@@ -39,9 +39,9 @@ export default function Header({ className }) {
               </div>
             </div>
             <div>
-              <Link href="/">
+              <Link href="/about">
                 <a>
-                  <button className="h-10 w-full rounded-md border border-orange-500 bg-white font-bold hover:bg-orange-200">
+                  <button className="h-10 w-full rounded-md border-2 border-orange-500 bg-white font-bold hover:bg-orange-200">
                     Learn more about us
                   </button>
                 </a>
