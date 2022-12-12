@@ -7,7 +7,7 @@ export default function Header({ className }) {
   return (
     <div
       className={classMerge(
-        "h-[90vh] w-full bg-[url('/images/header-cover.jpg')] bg-cover bg-fixed bg-center",
+        "h-[100vh] w-full bg-[url('/images/header-cover.jpg')] bg-cover bg-fixed bg-center",
         className
       )}
     >
