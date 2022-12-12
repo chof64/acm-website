@@ -1,10 +1,16 @@
 import React from "react";
 
 import Platform from "/src/components/Platform";
+import { classMerge } from "/src/utils/classMerge";
 
-export default function Header() {
+export default function Header({ className }) {
   return (
-    <div className="h-[90vh] w-full bg-[url('/images/header-cover.jpg')] bg-cover bg-fixed bg-center">
+    <div
+      className={classMerge(
+        "h-[90vh] w-full bg-[url('/images/header-cover.jpg')] bg-cover bg-fixed bg-center",
+        className
+      )}
+    >
       <Platform className="bg-black/20 backdrop-blur-[2px]">
         <div className="relative h-full w-full">
           <div className="flex h-full w-full items-center justify-center">
@@ -12,7 +18,7 @@ export default function Header() {
               Association of Computing Machinery
             </div>
           </div>
-          <div className="absolute bottom-8 right-0 flex flex-col items-end text-xs font-medium text-white md:text-base">
+          <div className="absolute bottom-8 right-0 select-none text-right text-xs leading-none text-white md:text-sm">
             <p>Department of Computer Studies</p>
             <p>University of Antique</p>
           </div>

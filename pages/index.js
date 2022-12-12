@@ -18,7 +18,7 @@ export const getStaticProps = async () => {
 export default function Index({ latestInfo }) {
   return (
     <>
-      <Header className="mt-16" />
+      <Header className="" />
       <LatestInfo className="mt-16" data={latestInfo} />
     </>
   );
