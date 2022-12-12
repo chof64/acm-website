@@ -1,55 +1,23 @@
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
 
 import Platform from "/src/components/Platform";
-import { classMerge } from "/src/utils/classMerge";
 
-export default function Header({ className }) {
+export default function Header() {
   return (
-    <Platform className={classMerge("", className)}>
-      <div className="rounded-md bg-white">
-        <div className="md:flex md:justify-between md:gap-x-2">
-          <div className="rounded-lg md:min-w-[40%] md:max-w-[40%]">
-            <div className="relative aspect-[982/533] w-full shadow">
-              <Image
-                className="rounded-lg"
-                src="/images/acm-banner.jpg"
-                layout="fill"
-                objectFit="cover"
-                priority
-                alt="ACM Banner Logo"
-              />
+    <div className="h-[90vh] w-full bg-[url('/images/header-cover.jpg')] bg-cover bg-fixed bg-center">
+      <Platform className="bg-black/20 backdrop-blur-[2px]">
+        <div className="relative h-full w-full">
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="text-5xl font-extrabold text-white md:text-6xl">
+              Association of Computing Machinery
             </div>
           </div>
-          <div className="mt-5 flex flex-col justify-between md:mt-0">
-            <div>
-              <h1 className="text-3xl font-extrabold md:text-4xl">
-                Association of Computing Machinery
-              </h1>
-              <div className="mt-2">
-                <p>
-                  Association of Computer Machinery, known by its initials, is
-                  one of the academic organizations in the Department of
-                  Computer Studies of the University of Antique. Lead by elected
-                  student leaders. The organization hosts events that enhance
-                  students&apos; technical skills, as well as promote leadership
-                  and teamwork.
-                </p>
-              </div>
-            </div>
-            <div>
-              <Link href="/about">
-                <a>
-                  <button className="h-10 w-full rounded-md border-2 border-orange-500 bg-white font-bold hover:bg-orange-200">
-                    Learn more about us
-                  </button>
-                </a>
-              </Link>
-            </div>
+          <div className="absolute bottom-8 right-0 flex flex-col items-end text-xs font-medium text-white md:text-base">
+            <p>Department of Computer Studies</p>
+            <p>University of Antique</p>
           </div>
         </div>
-      </div>
-    </Platform>
+      </Platform>
+    </div>
   );
 }
