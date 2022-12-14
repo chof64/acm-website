@@ -19,7 +19,6 @@ export default function Index({ latestInfo }) {
   return (
     <>
       <Header className="" />
-      <LatestInfo className="mt-16" data={latestInfo} />
     </>
   );
 }
