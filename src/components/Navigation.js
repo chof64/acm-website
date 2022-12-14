@@ -36,16 +36,15 @@ export default function Navigation() {
   }, [isOpaque]);
 
   return (
-    <Menu
-      as="div"
-      className={classMerge(
-        "absolute w-full",
-        isOpaque ? "bg-white/90 shadow-md backdrop-blur" : ""
-      )}
-    >
+    <Menu>
       {({ open }) => (
-        <>
-          <Platform>
+        <div className=" z-100 fixed inset-x-0 top-0 w-full">
+          <Platform
+            className={classMerge(
+              "",
+              isOpaque ? "bg-white/90 py-0.5 shadow-lg backdrop-blur" : ""
+            )}
+          >
             <div className="flex items-center justify-between">
               <Link href="/">
                 <a className="flex items-center justify-center gap-x-1">
@@ -110,7 +109,41 @@ export default function Navigation() {
               </nav>
             </div>
           </Platform>
-        </>
+          {open ? (
+            <div className="h-full w-full">
+              <div className="mt-20 flex items-center justify-center">
+                <div className="w-[95vw]">
+                  <Menu.Items
+                    as="div"
+                    className="flex max-h-[55vh] flex-col gap-y-2.5 overflow-auto rounded bg-white py-2 px-3 shadow-lg"
+                  >
+                    {_navigationItems.map((group) => (
+                      <div key={group.group}>
+                        <h2 className="text-xs font-medium uppercase text-neutral-400">
+                          {group.group}
+                        </h2>
+                        <div className="mt-1 flex flex-col gap-y-1">
+                          {group.items.map((item) => (
+                            <Menu.Item key={item.name}>
+                              <MenuLink
+                                className="py-2 px-4 align-middle text-sm"
+                                href={item.href}
+                                external={item.external}
+                              >
+                                {item.name}
+                              </MenuLink>
+                            </Menu.Item>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </Menu.Items>
+                </div>
+              </div>
+              <div className="fixed inset-0 -z-50 h-full w-full bg-white/20 backdrop-blur" />
+            </div>
+          ) : null}
+        </div>
       )}
     </Menu>
   );
