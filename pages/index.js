@@ -3,7 +3,8 @@ import React from "react";
 import LayoutGlobal from "/src/components/LayoutGlobal";
 import Layout from "/src/components/Layout";
 import Header from "/src/components/index/Header";
-import LatestInfo from "/src/components/index/LatestInfo";
+import AboutCta from "/src/components/index/AboutCta";
+import AboutMore from "/src/components/index/AboutMore";
 import { getDbLatestInfo } from "/src/lib/notionDatabase/getDbLatestInfo";
 
 export const getStaticProps = async () => {
@@ -19,6 +20,8 @@ export default function Index({ latestInfo }) {
   return (
     <>
       <Header className="" />
+      <AboutCta />
+      <AboutMore />
     </>
   );
 }
