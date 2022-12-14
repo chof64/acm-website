@@ -1,4 +1,5 @@
 import Navigation from "./Navigation";
+import Footer from "./footer/Footer";
 
 export default function Layout({ children }) {
   return (
@@ -6,7 +7,8 @@ export default function Layout({ children }) {
       <div className="sticky top-0 z-[100]">
         <Navigation />
       </div>
-      <div>{children}</div>
+      <>{children}</>
+      <Footer />
     </main>
   );
 }
