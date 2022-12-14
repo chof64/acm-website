@@ -1,22 +1,15 @@
-import { forwardRef } from "react";
-import { useRouter } from "next/router";
+import React, { forwardRef, useState, useEffect } from "react";
+import { Menu } from "@headlessui/react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu } from "@headlessui/react";
-import {
-  Menu as MenuIcon,
-  X as XIcon,
-  ExternalLink as ExternalLinkIcon,
-} from "lucide-react";
+import { Menu as MenuIcon, X as XIcon } from "lucide-react";
 
-import { items } from "/config/items.navigation.config.js";
-import Platform from "./Platform";
-import TrayPlatform from "./navigation/TrayPlatform";
+import { items } from "/config/items.navigation.config";
+import Platform from "/src/components/Platform";
 import { classMerge } from "/src/utils/classMerge";
 import { getConfig } from "/src/utils/getConfig";
 
 const _navigationItems = items;
-
 const _navigationInternal = getConfig({
   key: "group",
   value: "Pages",
@@ -24,137 +17,147 @@ const _navigationInternal = getConfig({
 });
 
 export default function Navigation() {
-  const router = useRouter();
-  const isActive = (href) => {
-    return router.asPath === href;
-  };
+  let [isOpaque, setIsOpaque] = useState(false);
 
-  const MenuLink = forwardRef((props, ref) => {
-    MenuLink.displayName = "MenuLink";
-    let { href, children, ...rest } = props;
-
-    return (
-      <Link href={href}>
-        <a ref={ref} {...rest}>
-          {children}
-        </a>
-      </Link>
-    );
-  });
+  useEffect(() => {
+    let offset = 100;
+    function onScroll() {
+      if (!isOpaque && window.scrollY > offset) {
+        setIsOpaque(true);
+      } else if (isOpaque && window.scrollY <= offset) {
+        setIsOpaque(false);
+      }
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll, { passive: true });
+    };
+  }, [isOpaque]);
 
   return (
-    <Menu as="div">
+    <Menu>
       {({ open }) => (
-        <>
-          <div className="items-cetner flex select-none justify-center bg-white">
-            <Platform>
-              <div className="flex items-center justify-between py-3">
-                <Link href="/">
-                  <a className="flex cursor-pointer items-center gap-x-1 hover:text-orange-500">
-                    <div className="relative aspect-square w-16">
-                      <Image
-                        priority
-                        layout="fill"
-                        objectFit="cover"
-                        src="/images/ccs-logo.png"
-                        alt="ACM Logo"
-                      />
-                    </div>
-                    <div className="rounded-r-md border-l-2 border-l-black py-1.5 px-1.5">
-                      <h1 className="flex flex-col text-lg font-extrabold uppercase leading-tight">
-                        Association of <span>Computing Machinery</span>
-                      </h1>
-                    </div>
-                  </a>
-                </Link>
-                <nav className="flex items-center gap-x-5">
-                  {_navigationInternal.items
-                    .filter((item) => item.pin)
-                    .map((item) => (
-                      <MenuLink
-                        className={classMerge(
-                          "hidden rounded-lg font-bold md:block ",
-                          isActive(item.href)
-                            ? "text-orange-500 hover:text-orange-700"
-                            : "text-neutral-500 hover:text-neutral-700"
-                        )}
-                        href={item.href}
-                        key={item.name}
-                      >
-                        {item.name}
-                      </MenuLink>
-                    ))}
-                  <Menu.Button
-                    as="div"
-                    className="flex cursor-pointer items-center justify-center rounded-md border border-orange-500 p-1 text-orange-500 hover:border-orange-700 hover:text-orange-700 md:p-0.5"
-                  >
-                    {open ? (
-                      <XIcon className="h-7 w-7 stroke-[3] text-red-500" />
-                    ) : (
-                      <MenuIcon className="h-7 w-7 stroke-[2]" />
+        <div className=" z-100 fixed inset-x-0 top-0 w-full">
+          <Platform
+            className={classMerge(
+              "",
+              isOpaque ? "bg-white/90 py-0.5 shadow-lg backdrop-blur" : ""
+            )}
+          >
+            <div className="flex items-center justify-between">
+              <Link href="/">
+                <a className="flex items-center justify-center gap-x-1">
+                  <div className="relative aspect-square w-16">
+                    <Image
+                      src="/images/ccs-logo.png"
+                      priority
+                      layout="fill"
+                      objectFit="cover"
+                      alt="CCS Logo"
+                    />
+                  </div>
+                  <div
+                    className={classMerge(
+                      "border-l-2 py-1.5 px-1",
+                      isOpaque ? "border-l-black" : "border-l-white"
                     )}
-                  </Menu.Button>
-                </nav>
-              </div>
-            </Platform>
-          </div>
-          <div className="absolute w-full">
-            <div className="absolute mt-8 flex w-full justify-center">
-              <TrayPlatform>
-                <Menu.Items
-                  as="div"
-                  className="flex max-h-[55vh] flex-col gap-y-2.5 overflow-auto rounded-lg border-2 border-orange-600 bg-white p-2 shadow focus:outline-none md:p-4"
-                >
-                  {_navigationItems.map((group) => (
-                    <div key={group.group}>
-                      <h2 className="text-xs font-medium text-orange-600">
-                        {group.group}
-                      </h2>
-                      <div className="mt-1 flex flex-col gap-y-1">
-                        {group.items.map((item) => (
-                          <Menu.Item key={item.name}>
-                            <MenuLink
-                              href={item.href}
-                              external={item.external}
-                              className={classMerge(
-                                "inline-flex items-center rounded border px-4 py-2.5 align-middle text-sm font-semibold tracking-wide md:text-base",
-                                isActive(item.href)
-                                  ? "border-orange-600 bg-orange-600 text-white shadow"
-                                  : "border-orange-500/0 text-neutral-500 hover:border-orange-500 hover:bg-orange-100 hover:text-orange-500"
-                              )}
-                            >
-                              {item.icon ? (
-                                <div className="relative mr-2 h-4 w-4">
-                                  <Image
-                                    src={item.icon}
-                                    layout="fill"
-                                    alt={item.name}
-                                  />
-                                </div>
-                              ) : null}
-                              {item.name}
-                              {item.external ? (
-                                <ExternalLinkIcon className="ml-1 h-3 w-3 stroke-sky-500" />
-                              ) : null}
-                            </MenuLink>
-                          </Menu.Item>
-                        ))}
-                      </div>
-                    </div>
+                  >
+                    <h1
+                      className={classMerge(
+                        "flex flex-col text-lg font-extrabold uppercase leading-tight",
+                        isOpaque ? "text-black" : "text-white"
+                      )}
+                    >
+                      Association of <span>Computing Machinery</span>
+                    </h1>
+                  </div>
+                </a>
+              </Link>
+              <nav className="space-x-10">
+                <div className="hidden space-x-8 md:block">
+                  {_navigationInternal.items.map((item) => (
+                    <MenuLink
+                      className={classMerge(
+                        " underline-offset-4 hover:font-semibold hover:underline",
+                        isOpaque ? "text-black" : "text-white"
+                      )}
+                      href={item.href}
+                      key={item.name}
+                    >
+                      {item.name}
+                    </MenuLink>
                   ))}
-                </Menu.Items>
-              </TrayPlatform>
+                </div>
+                <Menu.Button as="div" className="md:hidden">
+                  {open ? (
+                    <XIcon
+                      className={classMerge(
+                        "h-10 w-10",
+                        isOpaque ? "text-black" : "text-white"
+                      )}
+                    />
+                  ) : (
+                    <MenuIcon
+                      className={classMerge(
+                        "h-10 w-10",
+                        isOpaque ? "text-black" : "text-white"
+                      )}
+                    />
+                  )}
+                </Menu.Button>
+              </nav>
             </div>
-            <div
-              className={classMerge(
-                open
-                  ? "fixed inset-0 -z-50 h-full w-full bg-white/20 backdrop-blur"
-                  : null
-              )}
-            />
-          </div>
-        </>
+          </Platform>
+          {open ? (
+            <div className="h-full w-full">
+              <div className="mt-20 flex items-center justify-center">
+                <div className="w-[95vw]">
+                  <Menu.Items
+                    as="div"
+                    className="flex max-h-[55vh] flex-col gap-y-2.5 overflow-auto rounded bg-white py-2 px-3 shadow-lg"
+                  >
+                    {_navigationItems.map((group) => (
+                      <div key={group.group}>
+                        <h2 className="text-xs font-medium uppercase text-neutral-400">
+                          {group.group}
+                        </h2>
+                        <div className="mt-1 flex flex-col gap-y-1">
+                          {group.items.map((item) => (
+                            <Menu.Item key={item.name}>
+                              <MenuLink
+                                className="py-2 px-4 align-middle text-sm"
+                                href={item.href}
+                                external={item.external}
+                              >
+                                {item.name}
+                              </MenuLink>
+                            </Menu.Item>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </Menu.Items>
+                </div>
+              </div>
+              <div className="fixed inset-0 -z-50 h-full w-full bg-white/20 backdrop-blur" />
+            </div>
+          ) : null}
+        </div>
       )}
     </Menu>
   );
 }
+
+const MenuLink = forwardRef((props, ref) => {
+  MenuLink.displayName = "MenuLink";
+  let { href, children, ...rest } = props;
+
+  return (
+    <Link href={href}>
+      <a ref={ref} {...rest}>
+        {children}
+      </a>
+    </Link>
+  );
+});

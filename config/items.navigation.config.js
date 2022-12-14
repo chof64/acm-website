@@ -9,12 +9,12 @@ module.exports = {
           pin: true,
           external: false,
         },
-        {
-          name: "About",
-          href: "/about",
-          pin: true,
-          external: false,
-        },
+        // {
+        //   name: "About",
+        //   href: "/about",
+        //   pin: true,
+        //   external: false,
+        // },
       ],
     },
     // {
