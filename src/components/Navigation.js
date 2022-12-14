@@ -20,7 +20,7 @@ export default function Navigation() {
   let [isOpaque, setIsOpaque] = useState(false);
 
   useEffect(() => {
-    let offset = 100;
+    let offset = 50;
     function onScroll() {
       if (!isOpaque && window.scrollY > offset) {
         setIsOpaque(true);
@@ -42,7 +42,7 @@ export default function Navigation() {
           <Platform
             className={classMerge(
               "",
-              isOpaque ? "bg-white/90 py-0.5 shadow-lg backdrop-blur" : ""
+              isOpaque ? "bg-white/90 py-0.5 shadow backdrop-blur" : ""
             )}
           >
             <div className="flex items-center justify-between">
