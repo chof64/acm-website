@@ -19,7 +19,7 @@ export default function Footer({ className }) {
           </h1>
           <div className="mt-2 mb-6">
             <p className="text-sm leading-tight text-neutral-500">
-              Department of Computer Studies
+              College of Computer Studies
             </p>
             <p className="text-sm leading-tight text-neutral-500">
               University of Antique

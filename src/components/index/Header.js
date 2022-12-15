@@ -19,7 +19,7 @@ export default function Header({ className }) {
             </div>
           </div>
           <div className="absolute bottom-8 right-0 select-none text-right text-xs leading-none text-white md:text-sm">
-            <p>Department of Computer Studies</p>
+            <p>College of Computer Studies</p>
             <p>University of Antique</p>
           </div>
         </div>
